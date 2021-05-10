@@ -58,13 +58,34 @@ router.get("/get/:post_id",async (req,res)=> {
 
 router.get("/getAll",async (req,res)=> {
   try {
-    const post =await Posts.find({post_id : '60805b7d1de1cd4470a7fb8a'});
+    const post = await Posts.find({});
     res.json(post);
   }
   catch (e) {
     res.send({ message: "Error in Fetching posts" });
   }
 });
+
+router.get("/paginate", async (req, res, next) => {
+    try {
+      const pageSize = 5;
+      const currentPage = 1;
+      const posts = await Posts.find()
+      .skip (pageSize * (currentPage -1))
+      .limit ( pageSize);
+
+      const countPosts = await Posts.countDocuments();
+      console.log(countPosts)
+      res.setHeader("max-records",countPosts)
+      res.status(200).json(posts)
+
+    }
+    catch (e) {
+    res.status(500).json ({ 
+      message : e
+    });
+  }
+})
 
 module.exports = router;
 
