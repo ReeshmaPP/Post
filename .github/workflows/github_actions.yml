@@ -15,4 +15,4 @@ jobs:
         with:
           project: First Project
           column: Waiting
-          repo-token: ${{ secrets.TEST_POST }}
+          repo-token: ${{ secrets.ACCESS_TOKEN }}
