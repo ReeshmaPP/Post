@@ -14,5 +14,5 @@ jobs:
       - uses: alex-page/github-project-automation-plus@v0.7.1
         with:
           project: First Project
-          column: Waiting
+          column: In progress
           repo-token: ${{ secrets.ACCESS_TOKEN }}
